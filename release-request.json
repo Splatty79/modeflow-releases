@@ -1,7 +1,7 @@
 {
   "versionCode": 18,
   "versionName": "0.2.16",
-  "sourceUrl": "https://sdmntpraustraliaeast.oaiusercontent.com/files/00000000-4cbc-81fa-8f63-4cd0688e057e/raw?se=2026-08-29T03%3A36%3A01Z&sp=r&sv=2026-02-06&sr=b&scid=01a04b8b-b1f7-7e8e-81ed-9e4828d3ffdd&skoid=8cb40e9f-389f-4cf6-afaa-e5bd4c7fd98c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-29T01%3A06%3A25Z&ske=2026-08-30T01%3A06%3A25Z&sks=b&skv=2026-02-06&sig=C%2BoFBtd79oqDB8XKZbaI0%2BEm9yXhNkkkYKdRsJiM%2BB8%3D",
+  "archiveSha256": "aec1338a08b81454fa1096d5cd883e83296931c792569206f0590e6de0beccb5",
   "sha256": "25069f584633e28464063e59dc331b69f1cc261377b25d9a4330c9f1aaf6ab68",
   "notes": "Adds the all-audio-through-phone routine action and the secure in-app updater for future ModeFlow releases."
 }
