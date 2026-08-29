@@ -1,6 +1,6 @@
 {
-  "versionCode": 20,
-  "versionName": "0.2.18",
-  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.18/ModeFlow-v0.2.18.apk",
-  "notes": "Fixes Shizuku connection by declaring its required provider and updating permission state live. Also fixes the vertical Optional label."
+  "versionCode": 21,
+  "versionName": "0.2.19",
+  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.19/ModeFlow-v0.2.19.apk",
+  "notes": "Fixes separate app sound on ColorOS by explicitly routing the selected app to the connected Bluetooth device, binding its UID to that output, keeping alerts on the phone speaker, and restoring Bluetooth-aware volume control."
 }
