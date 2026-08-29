@@ -23,34 +23,40 @@ jobs:
         run: |
           version_name="$(jq -r '.versionName' release-request.json)"
           version_code="$(jq -r '.versionCode' release-request.json)"
-          source_url="$(jq -r '.sourceUrl' release-request.json)"
-          expected_sha="$(jq -r '.sha256' release-request.json)"
+          archive_sha="$(jq -r '.archiveSha256' release-request.json)"
+          apk_sha="$(jq -r '.sha256' release-request.json)"
 
           [[ "$version_name" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
           [[ "$version_code" =~ ^[0-9]+$ ]]
-          [[ "$expected_sha" =~ ^[0-9a-f]{64}$ ]]
-          case "$source_url" in
-            https://*.oaiusercontent.com/files/*/raw?*) ;;
-            *) echo "Source URL is not an approved build-artifact URL"; exit 1 ;;
-          esac
+          [[ "$archive_sha" =~ ^[0-9a-f]{64}$ ]]
+          [[ "$apk_sha" =~ ^[0-9a-f]{64}$ ]]
 
           echo "version_name=$version_name" >> "$GITHUB_OUTPUT"
           echo "version_code=$version_code" >> "$GITHUB_OUTPUT"
-          echo "source_url=$source_url" >> "$GITHUB_OUTPUT"
-          echo "expected_sha=$expected_sha" >> "$GITHUB_OUTPUT"
+          echo "archive_sha=$archive_sha" >> "$GITHUB_OUTPUT"
+          echo "apk_sha=$apk_sha" >> "$GITHUB_OUTPUT"
 
-      - name: Download and verify signed APK
+      - name: Reassemble and verify signed APK
         env:
-          SOURCE_URL: ${{ steps.request.outputs.source_url }}
-          EXPECTED_SHA: ${{ steps.request.outputs.expected_sha }}
+          ARCHIVE_SHA: ${{ steps.request.outputs.archive_sha }}
+          APK_SHA: ${{ steps.request.outputs.apk_sha }}
           VERSION_NAME: ${{ steps.request.outputs.version_name }}
         shell: bash
         run: |
+          transfer_dir=".transfer/v$VERSION_NAME"
+          archive_path="$RUNNER_TEMP/ModeFlow-v$VERSION_NAME-artifact.zip"
           apk_path="$RUNNER_TEMP/ModeFlow-v$VERSION_NAME.apk"
-          curl --fail --location --retry 3 "$SOURCE_URL" --output "$apk_path"
-          echo "$EXPECTED_SHA  $apk_path" | sha256sum --check
+
+          mapfile -d '' parts < <(find "$transfer_dir" -maxdepth 1 -type f -name 'part-*' -print0 | sort -z)
+          [[ "${#parts[@]}" -gt 0 ]]
+          cat "${parts[@]}" > "$archive_path"
+          echo "$ARCHIVE_SHA  $archive_path" | sha256sum --check
+
+          unzip -p "$archive_path" app-debug.apk > "$apk_path"
+          echo "$APK_SHA  $apk_path" | sha256sum --check
           echo "APK_PATH=$apk_path" >> "$GITHUB_ENV"
           echo "APK_NAME=ModeFlow-v$VERSION_NAME.apk" >> "$GITHUB_ENV"
+          echo "TRANSFER_DIR=$transfer_dir" >> "$GITHUB_ENV"
 
       - name: Publish GitHub release
         env:
@@ -66,7 +72,7 @@ jobs:
             gh release create "$tag" "$APK_PATH" --title "ModeFlow $VERSION_NAME" --notes-file "$RUNNER_TEMP/release-notes.txt"
           fi
 
-      - name: Update app manifest
+      - name: Update app manifest and clear transfer files
         env:
           VERSION_NAME: ${{ steps.request.outputs.version_name }}
           VERSION_CODE: ${{ steps.request.outputs.version_code }}
@@ -80,6 +86,7 @@ jobs:
              release-request.json > latest.json
           git config user.name "ModeFlow Release Bot"
           git config user.email "actions@users.noreply.github.com"
+          git rm -r "$TRANSFER_DIR"
           git add latest.json
-          git diff --cached --quiet || git commit -m "Update latest manifest to v$VERSION_NAME"
+          git commit -m "Publish ModeFlow v$VERSION_NAME"
           git push
