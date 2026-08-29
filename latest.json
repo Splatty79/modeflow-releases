@@ -1,6 +1,6 @@
 {
-  "versionCode": 19,
-  "versionName": "0.2.17",
-  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.17/ModeFlow-v0.2.17.apk",
-  "notes": "Adds Separate app sound: keep Spotify or another selected app on Bluetooth while other media, notifications, alarms and system sounds use the phone."
+  "versionCode": 20,
+  "versionName": "0.2.18",
+  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.18/ModeFlow-v0.2.18.apk",
+  "notes": "Fixes Shizuku connection by declaring its required provider and updating permission state live. Also fixes the vertical Optional label."
 }
