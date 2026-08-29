@@ -1,0 +1,6 @@
+{
+  "versionCode": 18,
+  "versionName": "0.2.16",
+  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.16/ModeFlow-v0.2.16.apk",
+  "notes": "Adds the all-audio-through-phone routine action and the secure in-app updater for future ModeFlow releases."
+}
