@@ -1,7 +1,7 @@
 {
-  "versionCode": 19,
-  "versionName": "0.2.17",
-  "archiveSha256": "bdc8643b1ecd704cea4536212570081bab581637ca10b6fd0c5ea78f696ee6c4",
-  "sha256": "cb39af8007f3958522926bb853b9fd68a73de638522db9cbb1575f8c2c188023",
-  "notes": "Adds Separate app sound: keep Spotify or another selected app on Bluetooth while other media, notifications, alarms and system sounds use the phone."
+  "versionCode": 20,
+  "versionName": "0.2.18",
+  "archiveSha256": "da43f50acedcc78548a07deb7c3ba716ab6b08f8dce4394346af4c1bb22fc6de",
+  "sha256": "1899d7a352f52ca2fb9c29c5113822d3ec9639fe0cca5f14bdca5453a9f2bd36",
+  "notes": "Fixes Shizuku connection by declaring its required provider and updating permission state live. Also fixes the vertical Optional label."
 }
