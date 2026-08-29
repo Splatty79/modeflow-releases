@@ -1,0 +1,85 @@
+name: Publish ModeFlow APK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - release-request.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release channel
+        uses: actions/checkout@v4
+
+      - name: Validate release request
+        id: request
+        shell: bash
+        run: |
+          version_name="$(jq -r '.versionName' release-request.json)"
+          version_code="$(jq -r '.versionCode' release-request.json)"
+          source_url="$(jq -r '.sourceUrl' release-request.json)"
+          expected_sha="$(jq -r '.sha256' release-request.json)"
+
+          [[ "$version_name" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$version_code" =~ ^[0-9]+$ ]]
+          [[ "$expected_sha" =~ ^[0-9a-f]{64}$ ]]
+          case "$source_url" in
+            https://*.oaiusercontent.com/files/*/raw?*) ;;
+            *) echo "Source URL is not an approved build-artifact URL"; exit 1 ;;
+          esac
+
+          echo "version_name=$version_name" >> "$GITHUB_OUTPUT"
+          echo "version_code=$version_code" >> "$GITHUB_OUTPUT"
+          echo "source_url=$source_url" >> "$GITHUB_OUTPUT"
+          echo "expected_sha=$expected_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Download and verify signed APK
+        env:
+          SOURCE_URL: ${{ steps.request.outputs.source_url }}
+          EXPECTED_SHA: ${{ steps.request.outputs.expected_sha }}
+          VERSION_NAME: ${{ steps.request.outputs.version_name }}
+        shell: bash
+        run: |
+          apk_path="$RUNNER_TEMP/ModeFlow-v$VERSION_NAME.apk"
+          curl --fail --location --retry 3 "$SOURCE_URL" --output "$apk_path"
+          echo "$EXPECTED_SHA  $apk_path" | sha256sum --check
+          echo "APK_PATH=$apk_path" >> "$GITHUB_ENV"
+          echo "APK_NAME=ModeFlow-v$VERSION_NAME.apk" >> "$GITHUB_ENV"
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION_NAME: ${{ steps.request.outputs.version_name }}
+        shell: bash
+        run: |
+          tag="v$VERSION_NAME"
+          jq -r '.notes' release-request.json > "$RUNNER_TEMP/release-notes.txt"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release upload "$tag" "$APK_PATH" --clobber
+          else
+            gh release create "$tag" "$APK_PATH" --title "ModeFlow $VERSION_NAME" --notes-file "$RUNNER_TEMP/release-notes.txt"
+          fi
+
+      - name: Update app manifest
+        env:
+          VERSION_NAME: ${{ steps.request.outputs.version_name }}
+          VERSION_CODE: ${{ steps.request.outputs.version_code }}
+        shell: bash
+        run: |
+          apk_url="https://github.com/Splatty79/modeflow-releases/releases/download/v$VERSION_NAME/$APK_NAME"
+          jq --argjson versionCode "$VERSION_CODE" \
+             --arg versionName "$VERSION_NAME" \
+             --arg apkUrl "$apk_url" \
+             '{versionCode: $versionCode, versionName: $versionName, apkUrl: $apkUrl, notes: .notes}' \
+             release-request.json > latest.json
+          git config user.name "ModeFlow Release Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add latest.json
+          git diff --cached --quiet || git commit -m "Update latest manifest to v$VERSION_NAME"
+          git push
