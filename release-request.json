@@ -1,7 +1,7 @@
 {
-  "versionCode": 18,
-  "versionName": "0.2.16",
-  "archiveSha256": "aec1338a08b81454fa1096d5cd883e83296931c792569206f0590e6de0beccb5",
-  "sha256": "25069f584633e28464063e59dc331b69f1cc261377b25d9a4330c9f1aaf6ab68",
-  "notes": "Adds the all-audio-through-phone routine action and the secure in-app updater for future ModeFlow releases."
+  "versionCode": 19,
+  "versionName": "0.2.17",
+  "archiveSha256": "bdc8643b1ecd704cea4536212570081bab581637ca10b6fd0c5ea78f696ee6c4",
+  "sha256": "cb39af8007f3958522926bb853b9fd68a73de638522db9cbb1575f8c2c188023",
+  "notes": "Adds Separate app sound: keep Spotify or another selected app on Bluetooth while other media, notifications, alarms and system sounds use the phone."
 }
