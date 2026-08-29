@@ -1,7 +1,7 @@
 {
-  "versionCode": 20,
-  "versionName": "0.2.18",
-  "archiveSha256": "da43f50acedcc78548a07deb7c3ba716ab6b08f8dce4394346af4c1bb22fc6de",
-  "sha256": "1899d7a352f52ca2fb9c29c5113822d3ec9639fe0cca5f14bdca5453a9f2bd36",
-  "notes": "Fixes Shizuku connection by declaring its required provider and updating permission state live. Also fixes the vertical Optional label."
+  "versionCode": 21,
+  "versionName": "0.2.19",
+  "archiveSha256": "513de36743b12c1e8d448ffaf15670728c44be658d5c6b005441c9a81fa20f8d",
+  "sha256": "c40f1782f849e1908eb0e99d496e2b2bd3d3819f84052c0bd45268149403da30",
+  "notes": "Fixes separate app sound on ColorOS by explicitly routing the selected app to the connected Bluetooth device, binding its UID to that output, keeping alerts on the phone speaker, and restoring Bluetooth-aware volume control."
 }
