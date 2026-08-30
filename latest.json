@@ -1,6 +1,6 @@
 {
-  "versionCode": 22,
-  "versionName": "0.2.20",
-  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.20/ModeFlow-v0.2.20.apk",
-  "notes": "Keeps the explicit Spotify-to-Bluetooth and phone-speaker audio policy active when ColorOS rejects the optional per-app UID affinity layer."
+  "versionCode": 23,
+  "versionName": "0.2.21",
+  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.21/ModeFlow-v0.2.21.apk",
+  "notes": "Safety update: clears the unsupported ColorOS separate-app audio policy, restores normal Bluetooth routing on upgrade, and prevents the action from hijacking all media."
 }
