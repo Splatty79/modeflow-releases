@@ -1,7 +1,7 @@
 {
-  "versionCode": 23,
-  "versionName": "0.2.21",
-  "archiveSha256": "26662ae24ab1ce48cbec78336a88dd2ece3eb78cd03d8a202f1ae8af263a1a92",
-  "sha256": "4d44f78271f53cc994820afb4065f751ab81c966adb1a58fcc732c42ce1f9eaf",
-  "notes": "Safety update: clears the unsupported ColorOS separate-app audio policy, restores normal Bluetooth routing on upgrade, and prevents the action from hijacking all media."
+  "versionCode": 24,
+  "versionName": "0.2.22",
+  "archiveSha256": "72162b087411a904e3f9abeaeceb037de824c06ff27eb6dd60881fba9dbc366f",
+  "sha256": "460370247720c2fbae2520e57f25d03d3f0f8a909c1b467bf5224f37055816b6",
+  "notes": "Reliability update: fixes household presence checks over mobile data, adds retry handling, and keeps location reminders working in the background with a low-power ColorOS geofence backup."
 }
