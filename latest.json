@@ -1,6 +1,6 @@
 {
-  "versionCode": 23,
-  "versionName": "0.2.21",
-  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.21/ModeFlow-v0.2.21.apk",
-  "notes": "Safety update: clears the unsupported ColorOS separate-app audio policy, restores normal Bluetooth routing on upgrade, and prevents the action from hijacking all media."
+  "versionCode": 24,
+  "versionName": "0.2.22",
+  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.22/ModeFlow-v0.2.22.apk",
+  "notes": "Reliability update: fixes household presence checks over mobile data, adds retry handling, and keeps location reminders working in the background with a low-power ColorOS geofence backup."
 }
