@@ -1,7 +1,7 @@
 {
-  "versionCode": 24,
-  "versionName": "0.2.22",
-  "archiveSha256": "72162b087411a904e3f9abeaeceb037de824c06ff27eb6dd60881fba9dbc366f",
-  "sha256": "460370247720c2fbae2520e57f25d03d3f0f8a909c1b467bf5224f37055816b6",
-  "notes": "Reliability update: fixes household presence checks over mobile data, adds retry handling, and keeps location reminders working in the background with a low-power ColorOS geofence backup."
+  "versionCode": 25,
+  "versionName": "0.2.23",
+  "archiveSha256": "45d4f1d07fa31084a336463091d07d4a9e9fc58ff0953998fb08499d1e38eb4c",
+  "sha256": "b4bd7f0e29358060897e142ef9446308e4dca8dbe18863b5184a210ad6467f78",
+  "notes": "Household presence update: adds an Android-scheduled background heartbeat, distinguishes a missing phone from a confirmed Away report, and pauses Everyone else is away routines when another phone cannot be confirmed. Update ModeFlow on every household phone and open it once after installation. Keep the same household code and home Wi-Fi."
 }
