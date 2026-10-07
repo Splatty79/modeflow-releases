@@ -1,6 +1,6 @@
 {
-  "versionCode": 25,
-  "versionName": "0.2.23",
-  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.23/ModeFlow-v0.2.23.apk",
-  "notes": "Household presence update: adds an Android-scheduled background heartbeat, distinguishes a missing phone from a confirmed Away report, and pauses Everyone else is away routines when another phone cannot be confirmed. Update ModeFlow on every household phone and open it once after installation. Keep the same household code and home Wi-Fi."
+  "versionCode": 26,
+  "versionName": "0.2.24",
+  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.24/ModeFlow-v0.2.24.apk",
+  "notes": "Fixes reminders being suppressed when a paired household phone is offline. Configured visual and spoken reminders now appear with a household-status warning when presence cannot be verified; a fresh Home report still suppresses the routine, and other conditional actions wait for confirmed Away reports. Also fixes unreadable Wi-Fi being treated as Away, refreshes Wi-Fi on each heartbeat, and improves Setup check-in diagnostics. Update your phone to restore the reminder fallback; update every household phone for the reporting improvements."
 }
