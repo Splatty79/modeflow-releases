@@ -1,7 +1,7 @@
 {
-  "versionCode": 26,
-  "versionName": "0.2.24",
-  "archiveSha256": "8fffd690ab1534aaffe06c65b3ad06fc7c2e2e078d15004a09f380e22efb5c31",
-  "sha256": "318ee70f0a35f565e9802ac98136647cce032adfdf1ef54bcf98d08444556d54",
-  "notes": "Fixes reminders being suppressed when a paired household phone is offline. Configured visual and spoken reminders now appear with a household-status warning when presence cannot be verified; a fresh Home report still suppresses the routine, and other conditional actions wait for confirmed Away reports. Also fixes unreadable Wi-Fi being treated as Away, refreshes Wi-Fi on each heartbeat, and improves Setup check-in diagnostics. Update your phone to restore the reminder fallback; update every household phone for the reporting improvements."
+  "versionCode": 27,
+  "versionName": "0.2.25",
+  "archiveSha256": "59f934d8fc8f3d3c6a2e046ff57b3de053381367549364462ab12d1b47404674",
+  "sha256": "fb43667d785f33fbdbf2176eb772fb8005ce73242d12d672652ce6485e7b46a3",
+  "notes": "Reminders now use only your saved wording, with no added household-status announcement. Offline reminder delivery and household conditions are preserved."
 }
