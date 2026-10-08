@@ -1,6 +1,6 @@
 {
-  "versionCode": 26,
-  "versionName": "0.2.24",
-  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.24/ModeFlow-v0.2.24.apk",
-  "notes": "Fixes reminders being suppressed when a paired household phone is offline. Configured visual and spoken reminders now appear with a household-status warning when presence cannot be verified; a fresh Home report still suppresses the routine, and other conditional actions wait for confirmed Away reports. Also fixes unreadable Wi-Fi being treated as Away, refreshes Wi-Fi on each heartbeat, and improves Setup check-in diagnostics. Update your phone to restore the reminder fallback; update every household phone for the reporting improvements."
+  "versionCode": 27,
+  "versionName": "0.2.25",
+  "apkUrl": "https://github.com/Splatty79/modeflow-releases/releases/download/v0.2.25/ModeFlow-v0.2.25.apk",
+  "notes": "Reminders now use only your saved wording, with no added household-status announcement. Offline reminder delivery and household conditions are preserved."
 }
